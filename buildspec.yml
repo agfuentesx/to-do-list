@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+  
+  build:
+    commands:
+      - echo "Installing dependencies..."
+      - pip install -r requirements.txt -t .
+      - echo "Creating deployment package..."
+      - zip -r deployment.zip . -x "*.git*" "*.zip" "buildspec.yml"
+  
+  post_build:
+    commands:
+      - echo "Deployment package created successfully"
+
+artifacts:
+  files:
+    - deployment.zip
