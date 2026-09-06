@@ -30,7 +30,8 @@ def create_response(status_code, body):
             'Access-Control-Allow-Headers': 'Content-Type',
             'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS'
         },
-        'body': json.dumps(body, default=str)
+        'body': json.dumps(body, default=str),
+
     }
 
 def lambda_handler(event, context):
@@ -111,7 +112,8 @@ def get_all_todos():
             return create_response(200, {
                 'success': True,
                 'count': len(todos),
-                'data': todos
+                'data': todos,
+                'updated': 'Si'
             })
     finally:
         conn.close()
